@@ -76,6 +76,10 @@ export class UsersService {
     return this.users.filter(user => user.isActive === true);
   }
 
+  getUserByName(name: string) {
+    return this.users.find(user => user.name === name);
+  }
+
   getUserById(id: string) {
     console.log('.:: User ID: ', id);
     const user = this.users.find((user) => user.id === id);
@@ -102,20 +106,17 @@ export class UsersService {
     return { result: data?.email };
   }
 
-//   createUser(userPayload: CreateUserDto) {
-//     console.log('.:: user: ', userPayload);
-//
-//     const newUser = {
-//       ...userPayload,
-//       id: `1`
-//     }
-//
-//     this.users.push(newUser);
-//     return {userPayload
-//       msg: 'Usuario creado correctamente',
-//       data: userPayload,
-//     };
-//   }
+  createUser(userPayload: CreateUserDto) {
+    console.log('.:: user: ', userPayload);
+
+    const newUser = {
+      ...userPayload,
+      id: `1`
+    }
+
+    this.users.push(newUser);
+    return userPayload;
+  }
 
   deleteUser(id: string) {
     const position = this.users.findIndex((user) => user.id === id);
