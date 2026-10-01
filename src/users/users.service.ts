@@ -10,56 +10,70 @@ export class UsersService {
       id: '1',
       name: 'Juanita',
       email: 'juanita@correo.com',
+      isActive: true,
     },
     {
       id: '2',
       name: 'Carlos',
       email: 'carlos@correo.com',
+      isActive: false,
     },
     {
       id: '3',
       name: 'Ana',
       email: 'ana.gomez@correo.com',
+      isActive: false,
     },
     {
       id: '4',
       name: 'Mateo',
       email: 'mateo.perez@correo.com',
+      isActive: false,
     },
     {
       id: '5',
       name: 'Sofía',
       email: 'sofia.ruiz@correo.com',
+      isActive: true,
     },
     {
       id: '6',
       name: 'David',
       email: 'david.lopez@correo.com',
+      isActive: true,
     },
     {
       id: '7',
       name: 'Lucía',
       email: 'lucia.torres@correo.com',
+      isActive: true,
     },
     {
       id: '8',
       name: 'Andrés',
       email: 'andres.castro@correo.com',
+      isActive: true,
     },
     {
       id: '9',
       name: 'Valentina',
       email: 'valentina.morales@correo.com',
+      isActive: true,
     },
     {
       id: '10',
       name: 'Alejandro',
       email: 'alejandro.ortiz@correo.com',
+      isActive: true,
     },
   ];
 
   getAllUsers() {
     return this.users;
+  }
+
+  getAllActiveUser() {
+    return this.users.filter(user => user.isActive === true);
   }
 
   getUserById(id: string) {
@@ -88,20 +102,20 @@ export class UsersService {
     return { result: data?.email };
   }
 
-  createUser(userPayload: CreateUserDto) {
-    console.log('.:: user: ', userPayload);
-
-    const newUser = {
-      ...userPayload,
-      id : ``
-    }
-
-    this.users.push(newUser);
-    return {userPayload
-      msg: 'Usuario creado correctamente',
-      data: userPayload,
-    };
-  }
+//   createUser(userPayload: CreateUserDto) {
+//     console.log('.:: user: ', userPayload);
+//
+//     const newUser = {
+//       ...userPayload,
+//       id: `1`
+//     }
+//
+//     this.users.push(newUser);
+//     return {userPayload
+//       msg: 'Usuario creado correctamente',
+//       data: userPayload,
+//     };
+//   }
 
   deleteUser(id: string) {
     const position = this.users.findIndex((user) => user.id === id);

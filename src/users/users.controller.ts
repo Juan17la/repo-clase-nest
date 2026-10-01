@@ -17,20 +17,35 @@ import { CreateUserDto } from './user.dto';
 
 @Controller('users')
 export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
   @Get('')
   getAllUsers() {
-    return UsersService.findAll();
+    const users = this.usersService.getAllUsers()
+    if (!users) {
+      throw new NotFoundException('No users found');
+    }
+    return users;
   }
 
-  @Get(':id')
-  getUserById(@Param('id') id: string) {}
+  @Get("active")
+  getAllActiveUsers() {
+    const users = this.usersService.getAllActiveUser();
+    if (!users) {
+      throw new NotFoundException('No active users found');
+    }
+    return users;
+  }
 
-  @Post()
-  createUser(@Body() userPayload: CreateUserDto) {}
-
-  @Delete(':id')
-  deleteUser(@Param('id') id: string) {}
-
-  @Put(':id')
-  updateUser(@Param('id') id: string, @Body() changes: User) {}
+//   @Get(':id')
+//   getUserById(@Param('id') id: string) {}
+//
+//   @Post()
+//   createUser(@Body() userPayload: CreateUserDto) {}
+//
+//   @Delete(':id')
+//   deleteUser(@Param('id') id: string) {}
+//
+//   @Put(':id')
+//   updateUser(@Param('id') id: string, @Body() changes: User) {}
 }
